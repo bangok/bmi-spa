@@ -1,11 +1,5 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/homepage">首页</router-link> |
-      <router-link to="/statistics">统计</router-link> |
-      <router-link to="/me">我的</router-link> 
-      <img src="./assets/spring.jpg"/>
-    </div>
     <router-view/>
   </div>
 </template>
