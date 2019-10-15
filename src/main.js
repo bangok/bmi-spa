@@ -7,7 +7,9 @@ import VueAxios from 'vue-axios'
 
 //配置axios跨域sessionId不丢失
 axios.defaults.withCredentials=true;
-
+//启用bootstrap
+import "bootstrap"
+import "bootstrap/dist/css/bootstrap.css"
 //启用axios
 Vue.use(VueAxios, axios)
 
