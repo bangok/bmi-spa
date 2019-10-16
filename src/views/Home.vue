@@ -106,10 +106,15 @@ export default {
  	}
  },
  mounted () {
-
+	this.isLogin();
   },
  methods: {
-    
+ 	//判断是否登录
+    isLogin(){
+    	if(this.$store.state.userid==""){
+    		this.$router.push({ name: 'login', params: {}});
+    	}
+    }
  }
  
 }

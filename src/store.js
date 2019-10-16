@@ -12,12 +12,19 @@ Vue.use(Vuex)
  */
 export default new Vuex.Store({
   state: {
-		username:"zcf",
-		height:"175"
+		username:"",
+		height:"",
+		userid:""
   },
   mutations: {
 		updateHeight(state,value){
 			state.height = value;
+		},
+		updateUsername(state,value){
+			state.username = value;
+		},
+		updateUserid(state,value){
+			state.userid = value;
 		}
   },
   actions: {

@@ -66,10 +66,14 @@ export default {
  	}
  },
  mounted () {
-
-  },
+	this.isLogin();
+ },
  methods: {
-    
+    isLogin(){
+    	if(this.$store.state.userid==""){
+    		this.$router.push({ name: 'login', params: {}});
+    	}
+    }
  }
  
 }
