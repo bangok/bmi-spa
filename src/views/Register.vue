@@ -127,12 +127,12 @@ export default {
       .then(res => {
       	//请求成功
         //判断是否用户重名
-        if(res.data.status==1){
+        if(res.data.status==0){
         	this.msg = res.data.err;
         	return;
         }
         //注册成功，保存用户信息
-        this.$store.commit("updateUserid",res.data.data.userid);
+        window.sessionStorage.setItem("zcf-bmi-id",res.data.data.userid);
         //3秒后进入首页
         this.tohome();
       })

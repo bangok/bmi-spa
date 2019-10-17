@@ -9,6 +9,7 @@ Vue.use(Vuex)
  * this.$store.state.username 来获取全局值
  * this.$store.commit("updateHeight",value); 来修改值
  * 在mutations中定义修改全局变量的方法
+ * 注意：刷新会导致vue实例重新渲染，从而导致store丢失！
  */
 export default new Vuex.Store({
   state: {

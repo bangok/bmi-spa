@@ -86,28 +86,20 @@ export default {
       .then(res => {
       	//请求成功
         //判断是否登陆失败
-        if(res.data.status==1){
+        if(res.data.status==0){
         	this.msg = res.data.err;
         	return;
         }
         //登录成功，保存用户id
-        this.$store.commit("updateUserid",res.data.data.userid);
+        //将数据保存到localStorage中放置刷新数据丢失
+  			window.sessionStorage.setItem("zcf-bmi-id",res.data.data.userid);
       	this.$router.push({name: 'homepage'});
       })
       .catch(function (err) {
         console.log(err)
       })
- 	},
-  tohome(){
-   	/**
-   	 * 编程式路由和传参，注意：应该使用name 而不是path
-   	 * 路由传参请参考：https://router.vuejs.org/zh/guide/essentials/navigation.html
-   	 * */
-   	this.$router.push({
-   		name: 'homepage',
-   		params:{id:119114}
-   		})
-   }
+ 	}
+ 	
   }
  
 }

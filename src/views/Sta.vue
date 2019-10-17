@@ -61,8 +61,14 @@ export default {
  },
  methods: {
     isLogin(){
-    	if(this.$store.state.userid==""){
+    	let id = window.sessionStorage.getItem("zcf-bmi-id");
+    	if(!id){
+    		//用户未登录
     		this.$router.push({ name: 'login', params: {}});
+    	}else{
+    		//用户已登录，获取用户信息
+    		//TODO
+    		console.log("用户已登录，获取用户信息");
     	}
     }
  }
