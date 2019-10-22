@@ -298,7 +298,7 @@ export default {
     			this.dateId ="";
     		}
     	}
-    	
+    	//处理空数组的情况
   		if(this.recordList.length==0){
     			this.bmi = "-";
     			this.currentWeight = "-";
