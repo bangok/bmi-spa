@@ -5,6 +5,12 @@
 </template>
 
 <style>
+.zcf-link{
+		color: darkslategray;
+	}
+.zcf-active-btn{
+		color: rgb(55,123,181);
+	}
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

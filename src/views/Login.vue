@@ -13,13 +13,13 @@
 					  <span class="input-group-addon" id="basic-addon1" style="background-color: white;">
 					  	<span class="glyphicon glyphicon-user zcf-form-span"></span>
 					  </span>
-					  <input type="text" class="form-control" v-model.trim="username" placeholder="请输入用户名" aria-describedby="basic-addon1" style="border-left: none;height: 45px;font-size: 18px;">
+					  <input type="text" class="form-control" v-model.trim="username" autocomplete="off" placeholder="请输入用户名" aria-describedby="basic-addon1" style="border-left: none;height: 45px;font-size: 18px;">
 					</div>
 					<div class="input-group" style="margin:30px auto;">
 					  <span class="input-group-addon" id="basic-addon1" style="background-color: white;">
 					  	<span class="glyphicon glyphicon-lock zcf-form-span"></span>
 					  </span>
-					  <input type="password" class="form-control" v-model.trim="password" placeholder="请输入密码" aria-describedby="basic-addon1" style="border-left: none;height: 45px;font-size: 18px;">
+					  <input type="password" class="form-control" v-model.trim="password" autocomplete="new-password" placeholder="请输入密码" aria-describedby="basic-addon1" style="border-left: none;height: 45px;font-size: 18px;">
 					</div>
 	    	</div>
 	    </div>  		

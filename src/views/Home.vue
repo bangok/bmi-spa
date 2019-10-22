@@ -15,7 +15,7 @@
   		<div class="row" style="margin-top: 20px;">
   			<div class="col-xs-12">
   				<div class="zcf-home-circle">
-  					<div style="margin-top: 40px;">
+  					<div style="margin-top: 40px;" @click="updateWeight">
   						<div v-if="isHaveBmi">
   							<p>{{currentWeight}}Kg</p>
 	  						<p>点击修改</p>
@@ -69,20 +69,26 @@
     <div class="zcf-tab">
       	<div class="zcf-homepage-btngroup">
       		<div>
+      			<router-link to="/homepage" class="zcf-link"  active-class="zcf-active-btn">
 	       		<span class="glyphicon glyphicon-home" style="font-size: 25px;"></span>
-	      		<p>首页</p>     			
+								<p>首页</p>
+						</router-link>  			
       		</div>
       	</div>
       	<div class="zcf-homepage-btngroup">
       		<div>
+      			<router-link to="/statistics" class="zcf-link"  active-class="zcf-active-btn">
       			<span class="glyphicon glyphicon-signal" style="font-size: 25px;"></span>
-      			<p>统计</p>
-      		</div>	
+								<p>统计</p>
+							</router-link> 
+      		</div>
       	</div>
       	<div class="zcf-homepage-btngroup">
       		<div id="">
+      			<router-link to="/me" class="zcf-link"  active-class="zcf-active-btn">
 	       		<span class="glyphicon glyphicon-user" style="font-size: 25px;"></span>
-	      		<p>我的</p>     			
+								<p>我的</p>
+						</router-link>      			
       		</div>
       	</div>
     </div>
@@ -115,6 +121,10 @@ export default {
 	this.getPageInfo();
   },
  methods: {
+ 		//修改当天体重
+ 		updateWeight(){
+ 			console.log("修改当天体重");
+ 		},
  		//判断是否登录
     isLogin(){
     	let id = window.sessionStorage.getItem("zcf-bmi-id");
@@ -281,7 +291,6 @@ export default {
 				}
 			}
     	this.viewTableRecord = mockList;
-    	console.log(this.viewTableRecord);
     }
     
  }

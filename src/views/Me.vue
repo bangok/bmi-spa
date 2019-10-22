@@ -35,20 +35,26 @@
     <div class="zcf-tab">
       	<div class="zcf-homepage-btngroup">
       		<div>
+      			<router-link to="/homepage" class="zcf-link"  active-class="zcf-active-btn">
 	       		<span class="glyphicon glyphicon-home" style="font-size: 25px;"></span>
-	      		<p>首页</p>     			
+								<p>首页</p>
+						</router-link>  			
       		</div>
       	</div>
       	<div class="zcf-homepage-btngroup">
       		<div>
+      			<router-link to="/statistics" class="zcf-link"  active-class="zcf-active-btn">
       			<span class="glyphicon glyphicon-signal" style="font-size: 25px;"></span>
-      			<p>统计</p>
-      		</div>	
+								<p>统计</p>
+							</router-link> 
+      		</div>
       	</div>
       	<div class="zcf-homepage-btngroup">
       		<div id="">
+      			<router-link to="/me" class="zcf-link"  active-class="zcf-active-btn">
 	       		<span class="glyphicon glyphicon-user" style="font-size: 25px;"></span>
-	      		<p>我的</p>     			
+								<p>我的</p>
+						</router-link>      			
       		</div>
       	</div>
     </div>
