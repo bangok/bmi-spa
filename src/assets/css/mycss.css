@@ -1,0 +1,9 @@
+.el-message-box{
+	width: 330px;
+}
+
+.el-button span{
+	color: darkslategrey;
+	font-family: "微软雅黑";
+	font-size: 17px;
+}

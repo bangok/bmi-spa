@@ -1,11 +1,13 @@
 <template>
   <div class="home">
   	<!--内容区开始-->
+  	<button @click="test">点击</button>
   	<div class="container" style="padding-bottom: 45px;border-bottom: 1px solid darkslategray;background: #CCFFFF;">
   		<!--当天日期-->
   		<div class="row zcf-home-toptime">
   			<div class="col-xs-12">
-  				<div>
+  				<div @click="changeDate">
+  					
   					<span style="color: darkslategray;font-family: '微软雅黑';font-size: 20px;">{{currentDate}}(点击切换)</span>
   					<div style="border: 1px solid darkslategrey;width:57%;margin: 0 auto;"></div>
   				</div>
@@ -15,14 +17,14 @@
   		<div class="row" style="margin-top: 20px;">
   			<div class="col-xs-12">
   				<div class="zcf-home-circle">
-  					<div style="margin-top: 40px;" @click="updateWeight">
-  						<div v-if="isHaveBmi">
+  					<div style="margin-top: 40px;">
+  						<div v-show="isHaveBmi">
   							<p>{{currentWeight}}Kg</p>
-	  						<p>点击修改</p>
+	  						<el-button type="text" @click="updateCurrentWeight">点击修改</el-button>
   						</div>
-	  					<div v-if="!isHaveBmi">
+	  					<div v-show="!isHaveBmi">
 	  						<p>今日未填写</p>
-	  						<p>点击填写</p>
+	  						<el-button type="text" @click="addCurrentWeight">点击填写</el-button>
 	  					</div>					
   					</div>
   				</div>
@@ -105,6 +107,7 @@ export default {
  	return {
  		isHaveBmi:false, //用来控制提示输入
  		msg:"测试",
+ 		dateId:"", //当天体重记录id
  		id:"", //用户id
  		userInfo:{}, //用户信息
  		recordList:[], //七天内体重记录列表，后台请求到的数据
@@ -121,10 +124,77 @@ export default {
 	this.getPageInfo();
   },
  methods: {
- 		//修改当天体重
- 		updateWeight(){
- 			console.log("修改当天体重");
- 		},
+ 	test(){
+ 		console.log(this.bmi);
+		console.log(this.bmiMsg);
+		console.log(this.currentWeight);
+		console.log(this.dateId);
+		console.log(this.currentDate);
+ 	},
+ 	 changeDate(){
+ 	 	console.log("改变日期");
+ 	 	//mock
+ 	 	let currdate = new Date();
+ 	 	currdate.setTime(currdate.getTime()-24*60*60*1000);
+ 	 	
+		this.getWeightInfo(currdate);
+ 	 },
+   addCurrentWeight(){
+ 	 			let that = this;
+        this.$prompt('请输入体重', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          inputPattern:  /^\d+(?=\.{0,1}\d+$|$)/,
+          inputErrorMessage: '体重只允许输入数字、小数'
+        }).then(({ value }) => {
+          this.axios.get(API.addRecord,{params:{userid:this.id,weight:value*10,record_date:this.currentDate}})
+			      .then(res => {
+			      	//是否请求成功
+			        if(res.data.status==0){
+			        	this.msg = res.data.err;
+			        	return;
+			        }
+			        //window.location.reload()
+			        this.getWeightInfo(new Date(this.currentDate));
+			      })
+			      .catch(function (err) {
+			        console.log(err)
+			      })
+        }).catch(() => {
+          this.$message({
+            type: 'info',
+            message: '取消输入'
+          });       
+        });
+     },
+ 	 updateCurrentWeight(){
+ 	 			let that = this;
+        this.$prompt('请输入体重', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          inputPattern:  /^\d+(?=\.{0,1}\d+$|$)/,
+          inputErrorMessage: '体重只允许输入数字、小数'
+        }).then(({ value }) => {
+          this.axios.get(API.updateWeightById,{params:{id:this.dateId,weight:value*10}})
+			      .then(res => {
+			      	//是否请求成功
+			        if(res.data.status==0){
+			        	this.msg = res.data.err;
+			        	return;
+			        }
+			       // window.location.reload()
+			       this.getWeightInfo(new Date(this.currentDate));
+			      })
+			      .catch(function (err) {
+			        console.log(err)
+			      })
+        }).catch(() => {
+          this.$message({
+            type: 'info',
+            message: '取消输入'
+          });       
+        });
+     },
  		//判断是否登录
     isLogin(){
     	let id = window.sessionStorage.getItem("zcf-bmi-id");
@@ -215,6 +285,7 @@ export default {
     	 * */
     	for(let i = 0;i<this.recordList.length;i++){
     		if(this.currentDate == this.recordList[i].record_date){
+    			this.dateId = this.recordList[i].id; //保存当天体重记录，后面更新体重要用id
     			this.currentWeight=this.recordList[i].weight/10;
     			this.bmi = ((this.recordList[i].weight/10)/((this.userInfo.height/100)*(this.userInfo.height/100))).toFixed(1);
     			this.isHaveBmi = true;
@@ -222,6 +293,9 @@ export default {
     		}
     		if(i==this.recordList.length-1){
     			this.bmi = "-";
+    			this.currentWeight = "-";
+    			this.isHaveBmi = false;
+    			this.dateId ="";
     		}
     	}
 			/**
@@ -298,7 +372,7 @@ export default {
 }
 </script>
 
-<style>
+<style>	
 	.zcf-bmi-left,.zcf-bmi-right{
 		font-size: 18px;
 		font-family: "微软雅黑";
