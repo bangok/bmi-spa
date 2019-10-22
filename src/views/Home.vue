@@ -298,6 +298,13 @@ export default {
     			this.dateId ="";
     		}
     	}
+    	
+  		if(this.recordList.length==0){
+    			this.bmi = "-";
+    			this.currentWeight = "-";
+    			this.isHaveBmi = false;
+    			this.dateId ="";
+  		}
 			/**
     	 * 3：更新bmi提示信息
     	 * */
