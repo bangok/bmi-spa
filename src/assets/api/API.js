@@ -6,5 +6,6 @@ export default {
     getUserInfoById:address+"/user/getUserInfoById",
     getRecordbYTimeSlot:address+"/record/getRecordbYTimeSlot",
     updateWeightById:address+"/record/updateWeightById",
-    addRecord:address+"/record/addRecord"
+    addRecord:address+"/record/addRecord",
+    updateHeightById:address+"/user/updateHeight"
 }
