@@ -1,16 +1,22 @@
 <template>
   <div class="home">
   	<!--内容区开始-->
-  	<button @click="test">点击</button>
+  	<!--<button @click="test">点击测试</button>-->
   	<div class="container" style="padding-bottom: 45px;border-bottom: 1px solid darkslategray;background: #CCFFFF;">
   		<!--当天日期-->
   		<div class="row zcf-home-toptime">
   			<div class="col-xs-12">
-  				<div @click="changeDate">
-  					
-  					<span style="color: darkslategray;font-family: '微软雅黑';font-size: 20px;">{{currentDate}}(点击切换)</span>
-  					<div style="border: 1px solid darkslategrey;width:57%;margin: 0 auto;"></div>
-  				</div>
+  				<div class="block">
+				    <el-date-picker
+				    	@change="changeDate"
+				      v-model="currentDate"
+				      format="yyyy 年 MM 月 dd 日"
+							value-format="yyyy-MM-dd"
+				      type="date"
+				      :picker-options="pickerOptions"
+				      placeholder="选择日期">
+				    </el-date-picker>
+				  </div>
   			</div>
   		</div>
   		<!--点击修改、今日体重圆圈-->
@@ -113,9 +119,14 @@ export default {
  		recordList:[], //七天内体重记录列表，后台请求到的数据
  		bmi:"-", //当天bmi，切换的时候变动
  		bmiMsg:"",//bmi提示数据
- 		currentDate:"",//当天日期，用户随时切换
+ 		currentDate:"",//当天日期，用户随时切换，字符串类型
  		currentWeight:"-", //当天体重，用户随时变更
- 		viewTableRecord:[]//体重表格数据，视图渲染使用的数据
+ 		viewTableRecord:[],//体重表格数据，视图渲染使用的数据
+ 		pickerOptions: {
+          disabledDate(time) {
+            return time.getTime() > Date.now();
+          }
+    }
  	}
  },
  mounted () {
@@ -132,12 +143,11 @@ export default {
 		console.log(this.currentDate);
  	},
  	 changeDate(){
- 	 	console.log("改变日期");
- 	 	//mock
- 	 	let currdate = new Date();
- 	 	currdate.setTime(currdate.getTime()-24*60*60*1000);
- 	 	
-		this.getWeightInfo(currdate);
+ 	 	if(!this.currentDate){
+ 	 		return;
+ 	 	}
+ 		let d = new Date(this.currentDate);
+		this.getWeightInfo(new Date(d));
  	 },
    addCurrentWeight(){
  	 			let that = this;
@@ -228,7 +238,7 @@ export default {
         console.log(err)
       })
     },
-    getWeightInfo(currdate){
+    getWeightInfo(currdate){ //日期（Date）类型
     	//获取传进来的时间
     	let d = currdate;
     	//获取结束日期，并且保存到全局为当天日期（重要）
@@ -298,6 +308,13 @@ export default {
     			this.dateId ="";
     		}
     	}
+    	//处理空数组的情况
+  		if(this.recordList.length==0){
+    			this.bmi = "-";
+    			this.currentWeight = "-";
+    			this.isHaveBmi = false;
+    			this.dateId ="";
+  		}
 			/**
     	 * 3：更新bmi提示信息
     	 * */
