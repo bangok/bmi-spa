@@ -1,7 +1,7 @@
 <template>
   <div class="home">
   	<!--内容区开始-->
-  	<button @click="test">单元测试</button>
+  	<!--<button @click="test">单元测试</button>-->
   	<div class="container" style="padding-bottom: 45px;border-bottom: 1px solid darkslategray;background: #CCFFFF;">
   		<!--当天日期-->
   		<div class="row zcf-home-toptime">
