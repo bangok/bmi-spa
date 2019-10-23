@@ -4,7 +4,7 @@
 		<div class="container">
 			<!--<button @click="test">单元测试</button>-->
 			<div class="row" style="margin-top: 60px;">
-				<h3>近<span>7</span>天体重趋势图</h3>
+				<h3>体重趋势图</h3>
 			</div>
 			<div class="row" style="">
 				<div id="main" style="width: auto;height:350px;"></div>
