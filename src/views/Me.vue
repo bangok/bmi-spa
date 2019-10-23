@@ -19,7 +19,7 @@
 		  			</div>
 		  			<div style="width: 40%;float: right; height: 50px">
 			  			<div style="border: 1px solid darkslategrey;margin-top: 10px;font-size: 17px;height: 30px;line-height: 30px">
-							<button @click="updateCurrentHeight" style="background: rgba(0,0,0,0);margin-top: 0px;height: 30px;line-height: 30px;border: none;">点击修改</button>
+							<button class="zcf-me-btn-active" @click="updateCurrentHeight" style="background: rgba(0,0,0,0);margin-top: 0px;height: 30px;line-height: 30px;border: none;">点击修改</button>
 			  			</div>
 			  		</div>
 		  		</div>
@@ -69,8 +69,8 @@ export default {
 
  data(){
  	return {
-        currentHeight:"-", //身高，用户随时变更
-        id:"", //用户id
+    currentHeight:"-", //身高，用户随时变更
+    id:"", //用户id
 		currentUserName:"-",
  	}
  },
@@ -147,6 +147,9 @@ export default {
 </script>
 
 <style>
+	.zcf-me-btn-active:focus{
+		outline: 0;
+	}
 	.zcf-tab{
 		position: fixed;
 		height: 55px;

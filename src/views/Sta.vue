@@ -54,18 +54,22 @@
 </template>
 
 <script>
+import API from '../assets/api/API.js'
+	
 export default {
 	
  data(){
  	return {
  		msg:"统计",
- 		userInfo:{}, //==>js obj
+ 		userInfo:{}, //==>obj
  		startdate:"",// ==>String
  		enddate:"",//==>String
+ 		recordList:[]//==>Array<obj>
  	}
  },
  mounted () {
 	this.isLogin();
+	this.getPageInfo();
  },
  methods: {
     isLogin(){
@@ -124,6 +128,26 @@ export default {
       .catch(function (err) {
         console.log(err)
       })
+    },
+    renderUserView(){
+    	/**
+    	 * 1：recordList按照日期列表排序，算法：选择排序
+    	 * */
+    	let len = this.recordList.length;
+    	let minIndex,temp;
+    	for(let i=0;i<len-1;i++){
+    		minIndex = i;
+    		for(let j =i+1;j<len;j++){
+    			if(new Date(this.recordList[j].record_date)<new Date(this.recordList[minIndex].record_date)){
+    				minIndex = j; 
+    			}
+    		}
+    		temp = this.recordList[i];
+	      this.recordList[i] = this.recordList[minIndex];
+	      this.recordList[minIndex] = temp;
+    	}
+    	
+    	console.log(this.recordList);
     }
     
  }
