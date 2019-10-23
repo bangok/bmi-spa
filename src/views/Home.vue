@@ -1,7 +1,7 @@
 <template>
   <div class="home">
   	<!--内容区开始-->
-  	<!--<button @click="test">点击测试</button>-->
+  	<!--<button @click="test">单元测试</button>-->
   	<div class="container" style="padding-bottom: 45px;border-bottom: 1px solid darkslategray;background: #CCFFFF;">
   		<!--当天日期-->
   		<div class="row zcf-home-toptime">
@@ -147,6 +147,10 @@ export default {
  	 		return;
  	 	}
  		let d = new Date(this.currentDate);
+ 		this.$message({
+				            type: 'success',
+				            message: '操作成功'
+		});
 		this.getWeightInfo(new Date(d));
  	 },
    addCurrentWeight(){
@@ -164,8 +168,13 @@ export default {
 			        	this.msg = res.data.err;
 			        	return;
 			        }
+			        this.$message({
+				            type: 'success',
+				            message: '操作成功'
+				      });
 			        //window.location.reload()
 			        this.getWeightInfo(new Date(this.currentDate));
+			        
 			      })
 			      .catch(function (err) {
 			        console.log(err)
@@ -192,6 +201,10 @@ export default {
 			        	this.msg = res.data.err;
 			        	return;
 			        }
+			        this.$message({
+				            type: 'success',
+				            message: '操作成功'
+				      });
 			       // window.location.reload()
 			       this.getWeightInfo(new Date(this.currentDate));
 			      })
@@ -301,6 +314,7 @@ export default {
     			this.isHaveBmi = true;
     			break;
     		}
+    		//当执行到最后一个元素完毕，还没有找到，说明没有该日数据
     		if(i==this.recordList.length-1){
     			this.bmi = "-";
     			this.currentWeight = "-";
@@ -382,6 +396,7 @@ export default {
 				}
 			}
     	this.viewTableRecord = mockList;
+    	
     }
     
  }

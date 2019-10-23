@@ -7,3 +7,7 @@
 	font-family: "微软雅黑";
 	font-size: 17px;
 }
+
+.zcf-sta-btngroup .el-date-editor.el-input, .el-date-editor.el-input__inner {
+    width: 130px;
+}

@@ -8,7 +8,10 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 //自己写的样式，修改框架的样式
 import './assets/css/mycss.css';
-
+import echarts from 'echarts'
+ 
+//将echarts挂载到vue实例上
+Vue.prototype.$echarts = echarts
 Vue.use(ElementUI);
 
 //配置axios跨域sessionId不丢失

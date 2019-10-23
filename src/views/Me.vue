@@ -87,7 +87,7 @@ export default {
     		//用户已登录，获取用户信息
     		//TODO
             this.id = id;
-    		console.log("用户已登录，获取用户信息");
+    		console.log("用户已登录，获取信息");
     		this.getUserInfo();
     	}
     },
