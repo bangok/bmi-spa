@@ -111,11 +111,11 @@ export default {
 	 //更新单前身高
      updateCurrentHeight(){
          let that = this;
-         this.$prompt('请输入身高', '提示', {
+         this.$prompt('请输入身高（cm）', '提示', {
              confirmButtonText: '确定',
              cancelButtonText: '取消',
-             inputPattern:  /^\d+(?=\.{0,1}\d+$|$)/,
-             inputErrorMessage: '身高只允许输入数字、小数'
+             inputPattern:  /^\d*\.{0}\d{0,1}$/,
+             inputErrorMessage: '身高只允许输入整数'
          }).then(({ value }) => {
              that.axios.get(API.updateHeightById,{params:{id:that.id,height:value}})
                  .then(res => {

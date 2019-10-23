@@ -104,6 +104,39 @@
 			this.initEcharts();
 		},
 		methods: {
+				getFormatDay(d){
+			 		let day = d.getDate();
+			 		switch (day) {
+						    case 1:
+						        day=  "01";
+						        break;
+						    case 2:
+						         day= "02";
+						         break;
+						    case 3:
+						         day= "03";
+						         break;
+						    case 4:
+						         day= "04";
+						         break;
+						    case 5:
+						         day= "05";
+						         break;
+						    case 6:
+						         day= "06";
+						         break;
+						    case 7:
+						         day= "07";
+						         break;
+						    case 8:
+						         day= "08";
+						         break;
+						    case 9:
+						         day= "09";
+						         break;
+						}
+			 		return day;
+			 	},
 			 	test(){
 			 		console.log(this.startdate);
 					console.log(this.enddate);
@@ -163,8 +196,8 @@
 						trigger: 'axis',
 						formatter(value) {
 							var res = '日期：' + value[0].name + '<br/>';
-							res += 'BMI值：' + value[0].value + '<br/>';
 							res += '体重：' + value[1].value + 'kg<br/>';
+							res += 'BMI值：' + value[0].value + '<br/>';
 							return res;
 						}
 					},
@@ -244,9 +277,9 @@
 					})
 			},
 			getWeightInfo(d1,d2) { //d1 ：开始时间（Date类型） d2 ：结束时间（Date类型）
-				var enddate = d2.getFullYear() + "-" + (d2.getMonth() + 1) + "-" + d2.getDate();
+				var enddate = d2.getFullYear() + "-" + (d2.getMonth() + 1) + "-" + this.getFormatDay(d2);
 				this.enddate = enddate;
-				var startdate = d1.getFullYear() + "-" + (d1.getMonth() + 1) + "-" + d1.getDate();
+				var startdate = d1.getFullYear() + "-" + (d1.getMonth() + 1) + "-" + this.getFormatDay(d1);
 				this.startdate = startdate;
 				//拼装请求参数
 				let param = {

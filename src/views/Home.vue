@@ -1,7 +1,7 @@
 <template>
   <div class="home">
   	<!--内容区开始-->
-  	<!--<button @click="test">单元测试</button>-->
+  	<button @click="test">单元测试</button>
   	<div class="container" style="padding-bottom: 45px;border-bottom: 1px solid darkslategray;background: #CCFFFF;">
   		<!--当天日期-->
   		<div class="row zcf-home-toptime">
@@ -135,12 +135,44 @@ export default {
 	this.getPageInfo();
   },
  methods: {
+ 	//获取格式化字符串的当日，JS的坑，不要用默认的.getDate()
+ 	getFormatDay(d){
+ 		let day = d.getDate();
+ 		switch (day) {
+			    case 1:
+			        day=  "01";
+			        break;
+			    case 2:
+			         day= "02";
+			         break;
+			    case 3:
+			         day= "03";
+			         break;
+			    case 4:
+			         day= "04";
+			         break;
+			    case 5:
+			         day= "05";
+			         break;
+			    case 6:
+			         day= "06";
+			         break;
+			    case 7:
+			         day= "07";
+			         break;
+			    case 8:
+			         day= "08";
+			         break;
+			    case 9:
+			         day= "09";
+			         break;
+			}
+ 		return day;
+ 	},
  	test(){
- 		console.log(this.bmi);
-		console.log(this.bmiMsg);
-		console.log(this.currentWeight);
-		console.log(this.dateId);
-		console.log(this.currentDate);
+ 		let day1 = new Date("2019-10-01");
+ 		let fd = this.getFormatDay(day1);
+ 		console.log(fd);
  	},
  	 changeDate(){
  	 	if(!this.currentDate){
@@ -255,12 +287,12 @@ export default {
     	//获取传进来的时间
     	let d = currdate;
     	//获取结束日期，并且保存到全局为当天日期（重要）
-    	var enddate = d.getFullYear()+"-" + (d.getMonth()+1) + "-" + d.getDate();
+    	var enddate = d.getFullYear()+"-" + (d.getMonth()+1) + "-" + this.getFormatDay(d);
     	this.currentDate = enddate;
     	//获取6天之前的时间，注意边界值
     	d.setTime(d.getTime()-6*24*60*60*1000);
     	//获取6天之前的日期
-    	var startdate = d.getFullYear()+"-" + (d.getMonth()+1) + "-" + d.getDate();
+    	var startdate = d.getFullYear()+"-" + (d.getMonth()+1) + "-" + this.getFormatDay(d);
 			//拼装请求参数
 			let param = {
 				startdate:startdate,
@@ -306,8 +338,10 @@ export default {
     	 * 公式：（BMI）=体重（kg）÷身高^2（m）
     	 * EX：70kg÷（1.75×1.75）=22.86
     	 * */
+    	console.log(this.currentDate);
+    	console.log(this.recordList);
     	for(let i = 0;i<this.recordList.length;i++){
-    		if(this.currentDate == this.recordList[i].record_date){
+    		if((new Date(this.currentDate)).getTime() == (new Date(this.recordList[i].record_date)).getTime()){
     			this.dateId = this.recordList[i].id; //保存当天体重记录，后面更新体重要用id
     			this.currentWeight=this.recordList[i].weight/10;
     			this.bmi = ((this.recordList[i].weight/10)/((this.userInfo.height/100)*(this.userInfo.height/100))).toFixed(1);
@@ -346,16 +380,16 @@ export default {
 				this.bmiMsg = "严重肥胖";
 			}
 			/**
-    	 * 4：更新一周内的体重表格图，更新viewTableRecord的值
+    	 * 4：更新一周内的体重表格图，更新viewTableRecord的值，注意：比较日期的时候用全等于
     	 * */
     	let mockDate = new Date(this.currentDate);
     	let mockList = [];
     	for(let i=0;i<7;i++){
-    		let day1 = mockDate.getFullYear()+"-" + (mockDate.getMonth()+1) + "-" + mockDate.getDate();
+    		let day1 = mockDate.getFullYear()+"-" + (mockDate.getMonth()+1) + "-" + this.getFormatDay(mockDate);
     		let day2 = mockDate.getDay();
     		let mockRecord = {day:day2,tizhong:"-"};
     		for(let j=0;j<this.recordList.length;j++){
-    			if(this.recordList[j].record_date==day1){
+    			if(this.recordList[j].record_date===day1){
     				mockRecord = {day:day2,tizhong:this.recordList[j].weight/10};
     			}
     		}
@@ -396,7 +430,6 @@ export default {
 				}
 			}
     	this.viewTableRecord = mockList;
-    	
     }
     
  }
