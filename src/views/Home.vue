@@ -338,8 +338,6 @@ export default {
     	 * 公式：（BMI）=体重（kg）÷身高^2（m）
     	 * EX：70kg÷（1.75×1.75）=22.86
     	 * */
-    	console.log(this.currentDate);
-    	console.log(this.recordList);
     	for(let i = 0;i<this.recordList.length;i++){
     		if((new Date(this.currentDate)).getTime() == (new Date(this.recordList[i].record_date)).getTime()){
     			this.dateId = this.recordList[i].id; //保存当天体重记录，后面更新体重要用id
