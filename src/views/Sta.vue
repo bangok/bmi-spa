@@ -95,7 +95,7 @@
 				userInfo: {}, //==>obj
 				startdate: "", // ==>String 开始日期
 				enddate: "", //==>String  结束日期
-				recordList: [] //==>Array<obj>
+				recordList: [],//==>Array<obj>
 			}
 		},
 		mounted() {
@@ -149,7 +149,7 @@
 					this.$message({
             type: 'error',
             message: '开始时间不能大于结束时间'
-          }); 
+          });
           return;
 				}
 				this.$message({
@@ -168,13 +168,13 @@
 					this.$message({
             type: 'error',
             message: '开始时间不能大于结束时间'
-          }); 
+          });
           return;
 				}
 				this.$message({
             type: 'success',
             message: '操作成功'
-        }); 
+        });
         let d1 = new Date(this.startdate);
         let d2 = new Date(this.enddate);
         this.getWeightInfo(d1,d2);
@@ -197,7 +197,20 @@
 						formatter(value) {
 							var res = '日期：' + value[0].name + '<br/>';
 							res += '体重：' + value[1].value + 'kg<br/>';
-							res += 'BMI值：' + value[0].value + '<br/>';
+							var bmi =  value[0].value;
+							var bmiMsg ="";
+                            if(bmi<18.5){
+                               bmiMsg = "偏瘦";
+                            }else if(bmi<24.0){
+                                bmiMsg = "正常";
+                            }else if(bmi<27.0){
+                               bmiMsg = "偏胖";
+                            }else if(bmi<30.0){
+                                bmiMsg = "肥胖";
+                            }else{
+                                bmiMsg = "严重肥胖";
+                            }
+							res += 'BMI值：' + value[0].value +'('+bmiMsg+')'+'<br/>';
 							return res;
 						}
 					},
@@ -222,7 +235,7 @@
 									color: 'black' //显示文字颜色
 								}
 							},
-	
+
 						}, {
 							name:'体重',
 							data: weightViewList,
@@ -236,7 +249,7 @@
 								}
 							},
 						}
-	
+
 					]
 				};
 				myChart.setOption(option);
@@ -323,7 +336,7 @@
 					this.recordList[i] = this.recordList[minIndex];
 					this.recordList[minIndex] = temp;
 				}
-				
+
 				/**
 				 * 2:组装折线图所需数据，并且渲染
 				 * */
@@ -360,7 +373,7 @@
 	.zcf-sta-btngroup {
 		float: left;
 	}
-	
+
 	.zcf-tab {
 		position: fixed;
 		height: 55px;
@@ -370,7 +383,7 @@
 		padding-top: 5px;
 		background: ghostwhite;
 	}
-	
+
 	.zcf-homepage-btngroup {
 		float: left;
 		width: 33.3%;
