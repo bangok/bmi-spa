@@ -31,7 +31,7 @@
 	  					<div v-show="!isHaveBmi">
 	  						<p>今日未填写</p>
 	  						<el-button type="text" @click="addCurrentWeight">点击填写</el-button>
-	  					</div>					
+	  					</div>
   					</div>
   				</div>
   			</div>
@@ -46,7 +46,7 @@
 	  					</div>
 	  					<div class="zcf-bmi-right">
 	  						{{bmi}}
-	  					</div> 						
+	  					</div>
   					</div>
 
   				</div>
@@ -57,7 +57,7 @@
   	<!--近一周体重开始-->
   		<div class="container">
 	  		<div class="row" style="margin-top: 20px;">
-	  			<h4>近一周体重表（单位：Kg）</h4>	
+	  			<h4>近一周体重表（单位：Kg）</h4>
 	  			<div class="container">
 	  				<div class="table-responsive">
 					  <table class="table zcf-home-table">
@@ -70,7 +70,7 @@
 					  </table>
 					</div>
 	  			</div>
-	  		</div>  			
+	  		</div>
   		</div>
   		<!--近一周体重结束-->
   	<!--底部TAB栏开始-->
@@ -80,7 +80,7 @@
       			<router-link to="/homepage" class="zcf-link"  active-class="zcf-active-btn">
 	       		<span class="glyphicon glyphicon-home" style="font-size: 25px;"></span>
 								<p>首页</p>
-						</router-link>  			
+						</router-link>
       		</div>
       	</div>
       	<div class="zcf-homepage-btngroup">
@@ -88,7 +88,7 @@
       			<router-link to="/statistics" class="zcf-link"  active-class="zcf-active-btn">
       			<span class="glyphicon glyphicon-signal" style="font-size: 25px;"></span>
 								<p>统计</p>
-							</router-link> 
+							</router-link>
       		</div>
       	</div>
       	<div class="zcf-homepage-btngroup">
@@ -96,7 +96,7 @@
       			<router-link to="/me" class="zcf-link"  active-class="zcf-active-btn">
 	       		<span class="glyphicon glyphicon-user" style="font-size: 25px;"></span>
 								<p>我的</p>
-						</router-link>      			
+						</router-link>
       		</div>
       	</div>
     </div>
@@ -105,10 +105,10 @@
 </template>
 
 <script>
-import API from '../assets/api/API.js'	
-	
+import API from '../assets/api/API.js'
+
 export default {
-	
+
  data(){
  	return {
  		isHaveBmi:false, //用来控制提示输入
@@ -187,11 +187,11 @@ export default {
  	 },
    addCurrentWeight(){
  	 			let that = this;
-        this.$prompt('请输入体重', '提示', {
+        this.$prompt('请输入体重(kg)', '提示', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
-          inputPattern:  /^\d+(?=\.{0,1}\d+$|$)/,
-          inputErrorMessage: '体重只允许输入数字、小数'
+          inputPattern:  /^\d+(\.\d{0,1})?$/,
+          inputErrorMessage: '体重只允许输入数字、一位小数'
         }).then(({ value }) => {
           this.axios.get(API.addRecord,{params:{userid:this.id,weight:value*10,record_date:this.currentDate}})
 			      .then(res => {
@@ -206,7 +206,7 @@ export default {
 				      });
 			        //window.location.reload()
 			        this.getWeightInfo(new Date(this.currentDate));
-			        
+
 			      })
 			      .catch(function (err) {
 			        console.log(err)
@@ -215,16 +215,16 @@ export default {
           this.$message({
             type: 'info',
             message: '取消输入'
-          });       
+          });
         });
      },
  	 updateCurrentWeight(){
  	 			let that = this;
-        this.$prompt('请输入体重', '提示', {
+        this.$prompt('请输入体重(kg)', '提示', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
-          inputPattern:  /^\d+(?=\.{0,1}\d+$|$)/,
-          inputErrorMessage: '体重只允许输入数字、小数'
+          inputPattern: /^\d+(\.\d{0,1})?$/,
+          inputErrorMessage: '体重只允许输入数字、一位小数'
         }).then(({ value }) => {
           this.axios.get(API.updateWeightById,{params:{id:this.dateId,weight:value*10}})
 			      .then(res => {
@@ -247,7 +247,7 @@ export default {
           this.$message({
             type: 'info',
             message: '取消输入'
-          });       
+          });
         });
      },
  		//判断是否登录
@@ -277,7 +277,7 @@ export default {
 				let currdate = new Date(); //今日日期
 				//currdate.setTime(currdate.getTime()-24*60*60*1000);
 				this.getWeightInfo(currdate);
-				
+
       })
       .catch(function (err) {
         console.log(err)
@@ -326,7 +326,7 @@ export default {
     		minIndex = i;
     		for(let j =i+1;j<len;j++){
     			if(new Date(this.recordList[j].record_date)<new Date(this.recordList[minIndex].record_date)){
-    				minIndex = j; 
+    				minIndex = j;
     			}
     		}
     		temp = this.recordList[i];
@@ -398,7 +398,7 @@ export default {
     	}
     	//4.1：整理整理渲染数据，转换数字周次为中文，并且取反序
 			mockList.reverse();
-		
+
 			for(let i =0;i<mockList.length;i++){
 				if(mockList[i].day==0){
 					mockList[i].day="周日";
@@ -431,13 +431,13 @@ export default {
 			}
     	this.viewTableRecord = mockList;
     }
-    
+
  }
- 
+
 }
 </script>
 
-<style>	
+<style>
 	.zcf-bmi-left,.zcf-bmi-right{
 		font-size: 18px;
 		font-family: "微软雅黑";
@@ -477,7 +477,7 @@ export default {
 	.zcf-home-table th{
 		text-align: center;
 	}
-	
+
 	.zcf-tab{
 		position: fixed;
 		height: 55px;

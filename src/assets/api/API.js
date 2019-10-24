@@ -1,4 +1,4 @@
-let address = "http://localhost:85";
+let address = "http://housy.ngrok2.xiaomiqiu.cn";
 
 export default {
     register:address+"/user/register",
