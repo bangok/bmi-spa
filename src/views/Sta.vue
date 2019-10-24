@@ -147,10 +147,10 @@
 				}
 				if(new Date(this.startdate)>new Date(this.enddate)){
 					this.$message({
-            type: 'error',
-            message: '开始时间不能大于结束时间'
-          });
-          return;
+                        type: 'error',
+                        message: '开始时间不能大于结束时间'
+                      });
+                     return;
 				}
 				this.$message({
             type: 'success',
@@ -166,15 +166,15 @@
 				}
 				if(new Date(this.startdate)>new Date(this.enddate)){
 					this.$message({
-            type: 'error',
-            message: '开始时间不能大于结束时间'
-          });
-          return;
+                      type: 'error',
+                      message: '开始时间不能大于结束时间'
+                   });
+                      return;
 				}
 				this.$message({
-            type: 'success',
-            message: '操作成功'
-        });
+                 type: 'success',
+                 message: '操作成功'
+                 });
         let d1 = new Date(this.startdate);
         let d2 = new Date(this.enddate);
         this.getWeightInfo(d1,d2);
