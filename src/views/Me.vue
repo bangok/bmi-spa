@@ -125,6 +125,7 @@ export default {
                          that.msg = res.data.err;
                          return;
                      }
+									 this.$message({type: 'success',message: '操作成功'});
                    that.getUserInfo();
                  })
                  .catch(function (err) {
