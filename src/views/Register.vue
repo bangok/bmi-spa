@@ -31,7 +31,7 @@
 					  <span class="input-group-addon" id="basic-addon1" style="background-color: white;">
 					  	<span class="glyphicon glyphicon-indent-left zcf-form-span"></span>
 					  </span>
-					  <input type="text" class="form-control" v-model.trim="height" placeholder="请输入身高（单位：cm）" aria-describedby="basic-addon1" style="border-left: none;height: 45px;font-size: 18px;">
+					  <input type="text" class="form-control" v-model.trim="height" placeholder="请输入身高(cm)" aria-describedby="basic-addon1" style="border-left: none;height: 45px;font-size: 18px;">
 					</div>
 	    	</div>
 	    </div>  	
