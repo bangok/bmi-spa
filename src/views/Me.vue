@@ -26,7 +26,7 @@
 		  	</div>
 		  </div>
 		  <!--退出登录-->
-	  	<div class="row" style="margin-top: 200px;">
+	  	<div class="row" style="margin-top: 100px;">
 	  		<button @click="loginOut" style="color: whitesmoke; background: #00CCCC;width: 80%;border-radius: 3px;height: 38px;font-size: 20px;border: none;">退出登录</button>
 	  	</div>
 		</div>
@@ -92,7 +92,7 @@ export default {
     	}
     },
 	 //获取用户信息
-     getUserInfo(){
+    getUserInfo(){
     this.axios.get(API.getUserInfoById,{params:{id:this.id}})
 			.then(res =>{
                 //是否请求成功

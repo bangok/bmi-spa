@@ -12,5 +12,6 @@ module.exports = {
 		   Popper: ["popper.js", "default"]
 		 })
 	   ]
-	 }
+	 },
+	 productionSourceMap: false 
 };

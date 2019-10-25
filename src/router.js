@@ -1,10 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from './views/Home.vue'
-import Sta from './views/Sta.vue'
-import Me from './views/Me.vue'
-import Login from './views/Login.vue'
-import Register from './views/Register.vue'
 
 Vue.use(Router)
 
@@ -15,32 +10,32 @@ export default new Router({
   	{
       path: '/',
       name:"/",
-      component: Home
+      component: (resolve) => require(['./views/Home.vue'],resolve)
     },
   	{
       path: '/login',
       name:"login",
-      component: Login
+      component: (resolve) => require(['./views/Login.vue'],resolve)
     },
     {
       path: '/register',
       name:"register",
-      component: Register
+      component: (resolve) => require(['./views/Register.vue'],resolve)
     },
     {
       path: '/homepage',
       name:"homepage",
-      component: Home
+      component: (resolve) => require(['./views/Home.vue'],resolve)
     },
     {
       path: '/statistics',
       name:"statistics",
-      component: Sta
+      component: (resolve) => require(['./views/Sta.vue'],resolve)
     },
     {
       path: '/me',
       name:"me",
-      component: Me
+      component: (resolve) => require(['./views/Me.vue'],resolve)
     }
   ]
 })

@@ -2,7 +2,8 @@
   <div class="home">
   	<!--内容区开始-->
   	<!--<button @click="test">单元测试</button>-->
-  	<div class="container" style="padding-bottom: 45px;border-bottom: 1px solid darkslategray;background: #CCFFFF;">
+  	
+  	<div class="container" style="padding-bottom: 15px;border-bottom: 1px solid darkslategray;background: #CCFFFF;">
   		<!--当天日期-->
   		<div class="row zcf-home-toptime">
   			<div class="col-xs-12">
@@ -56,7 +57,7 @@
   	<!--内容区结束-->
   	<!--近一周体重开始-->
   		<div class="container">
-	  		<div class="row" style="margin-top: 20px;">
+	  		<div class="row" style="margin-top: 5px;">
 	  			<h4>近一周体重表（单位：Kg）</h4>
 	  			<div class="container">
 	  				<div class="table-responsive">
@@ -131,10 +132,14 @@ export default {
  },
  mounted () {
 	this.isLogin();
-	//通过回调、函数嵌套来保持同步关系，代码稍微冗乱
-	this.getPageInfo();
   },
  methods: {
+ 	xxx(){
+ 		          this.$message({
+            type: 'info',
+            message: '取消输入'
+          });
+ 	},
  	//获取格式化字符串的当日，JS的坑，不要用默认的.getDate()
  	getFormatDay(d){
  		let day = d.getDate();
@@ -260,6 +265,8 @@ export default {
     		//用户已登录，获取用户信息
     		this.id = id;
     		console.log("用户已登录，获取信息");
+    		//通过回调、函数嵌套来保持同步关系，代码稍微冗乱
+				this.getPageInfo();
     	}
     },
     getPageInfo(){

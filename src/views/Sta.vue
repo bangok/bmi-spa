@@ -7,7 +7,7 @@
 				<h3>体重趋势图</h3>
 			</div>
 			<div class="row" style="">
-				<div id="main" style="width: auto;height:350px;"></div>
+				<div id="main" style="width: auto;height:300px;"></div>
 			</div>
 			<div class="row" style="margin-top: 35px;">
 				<!--日期选择按钮-->
@@ -100,8 +100,6 @@
 		},
 		mounted() {
 			this.isLogin();
-			this.getPageInfo();
-			this.initEcharts();
 		},
 		methods: {
 				getFormatDay(d){
@@ -266,6 +264,8 @@
 					//用户已登录，获取用户信息
 					this.id = id;
 					console.log("用户已登录，获取信息");
+					this.getPageInfo();
+					this.initEcharts();
 				}
 			},
 			getPageInfo() {

@@ -8,8 +8,8 @@
 	    	<div class="zcf-login-msg">
 	    		{{msg}}
 	    	</div>
-	    	<div class="zcf-form" style="margin-bottom: 60px;">
-	    		<div class="input-group" style="margin:30px auto;">
+	    	<div class="zcf-form" style="margin-bottom: 30px;">
+	    		<div class="input-group" style="margin:10px auto;">
 					  <span class="input-group-addon" id="basic-addon1" style="background-color: white;">
 					  	<span class="glyphicon glyphicon-user zcf-form-span"></span>
 					  </span>
@@ -23,7 +23,7 @@
 					</div>
 	    	</div>
 	    </div>  		
-	  	<div class="row" style="margin-top: 80px;">
+	  	<div class="row" style="margin-top: 20px;">
 	  		<button @click="login()" style="color: whitesmoke; background: #00CCCC;width: 80%;border-radius: 4px;height: 43px;font-size: 23px;border: none;">登录</button>
 	  		 <p style="margin-top: 20px; font-size: 16px;">没有账号？<router-link to="/register">去注册</router-link> </p>
 	  	</div>

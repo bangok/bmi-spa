@@ -27,7 +27,7 @@
 					  </span>
 					  <input type="password" class="form-control" v-model.trim="repassword" placeholder="请确认密码" aria-describedby="basic-addon1" style="border-left: none;height: 45px;font-size: 18px;">
 					</div>
-					<div class="input-group" style="margin:30px auto;">
+					<div class="input-group" style="margin:15px auto;">
 					  <span class="input-group-addon" id="basic-addon1" style="background-color: white;">
 					  	<span class="glyphicon glyphicon-indent-left zcf-form-span"></span>
 					  </span>
@@ -35,7 +35,7 @@
 					</div>
 	    	</div>
 	    </div>  	
-	  	<div class="row" style="margin-top: 30px;">
+	  	<div class="row" style="margin-top: 10px;">
 	  		<button @click="register()" style="color: whitesmoke; background: #00CCCC;width: 80%;border-radius: 4px;height: 43px;font-size: 23px;border: none;">注册</button>
 	  	  <p style="margin-top: 20px; font-size: 16px;">已有账号？<router-link to="/login">去登录</router-link> </p>
 	  	</div>
@@ -165,8 +165,8 @@ export default {
 
 <style>
 	.zcf-register-title{
-		margin-top: 50px;
-		margin-bottom: 50px;
+		margin-top: 30px;
+		margin-bottom: 20px;
 	}
 	.zcf-register-title h1{
 		font-family: '微软雅黑';

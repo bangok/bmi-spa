@@ -1,5 +1,5 @@
 .el-message-box{
-	width: 330px;
+	width: 285px;
 }
 
 .el-button span{
@@ -10,4 +10,13 @@
 
 .zcf-sta-btngroup .el-date-editor.el-input, .el-date-editor.el-input__inner {
     width: 130px;
+}
+
+.el-message.el-message--info{
+	width: 60px;
+}
+
+
+.el-message{
+	min-width: 250px;
 }
