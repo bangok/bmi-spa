@@ -119,10 +119,10 @@ export default {
              inputErrorMessage: '身高只允许输入整数'
 
          }).then(({ value }) => {
-         		if(value>300){
+         		if(value>999){
          			that.$message({
                  type: 'error',
-                 message: '身高上限为3米'
+                 message: '身高上限为999厘米'
              });
          			return;
          		}

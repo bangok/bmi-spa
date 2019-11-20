@@ -117,8 +117,8 @@ export default {
  			this.msg = "身高只允许正整数";
  			return;
  		}
- 		if(this.height>300){
- 			this.msg = "身高上限为3米";
+ 		if(this.height>999){
+ 			this.msg = "身高上限为999厘米";
  			return;
  		}
  		//调用接口
