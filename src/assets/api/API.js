@@ -1,4 +1,5 @@
 let address = "http://188.131.191.14:85";
+//let address = "http://localhost:85";
 
 export default {
     register:address+"/user/register",

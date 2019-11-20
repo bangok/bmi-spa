@@ -63,6 +63,7 @@
 </template>
 
 <script>
+
 import API from "../assets/api/API";
 
 export default {
@@ -118,6 +119,13 @@ export default {
              inputErrorMessage: '身高只允许输入整数'
 
          }).then(({ value }) => {
+         		if(value>300){
+         			that.$message({
+                 type: 'error',
+                 message: '身高上限为3米'
+             });
+         			return;
+         		}
              that.axios.get(API.updateHeightById,{params:{id:that.id,height:value}})
                  .then(res => {
                      //是否请求成功

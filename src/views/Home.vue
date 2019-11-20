@@ -198,6 +198,13 @@ export default {
           inputPattern:  /^\d+(\.\d{0,1})?$/,
           inputErrorMessage: '体重只允许输入数字、一位小数'
         }).then(({ value }) => {
+        	if(value>1000){
+        		this.$message({
+				            type: 'error',
+				            message: '体重最多输入1000公斤'
+				    });
+				    return;
+        	}
           this.axios.get(API.addRecord,{params:{userid:this.id,weight:value*10,record_date:this.currentDate}})
 			      .then(res => {
 			      	//是否请求成功
@@ -231,6 +238,13 @@ export default {
           inputPattern: /^\d+(\.\d{0,1})?$/,
           inputErrorMessage: '体重只允许输入数字、一位小数'
         }).then(({ value }) => {
+        	if(value>1000){
+        		this.$message({
+				            type: 'error',
+				            message: '体重最多输入1000公斤'
+				    });
+				    return;
+        	}
           this.axios.get(API.updateWeightById,{params:{id:this.dateId,weight:value*10}})
 			      .then(res => {
 			      	//是否请求成功
@@ -449,7 +463,7 @@ export default {
 	}
 	.zcf-bmi-left{
 		float: left;
-		width: 65%;
+		width: 75%;
 	}
 	.zcf-home-circle p{
 		color: darkgreen;

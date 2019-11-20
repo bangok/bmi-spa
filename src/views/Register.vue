@@ -117,6 +117,10 @@ export default {
  			this.msg = "身高只允许正整数";
  			return;
  		}
+ 		if(this.height>300){
+ 			this.msg = "身高上限为3米";
+ 			return;
+ 		}
  		//调用接口
  		let param = {
  			username:this.username,
