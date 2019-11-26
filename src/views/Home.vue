@@ -140,37 +140,70 @@ export default {
             message: '取消输入'
           });
  	},
+ 	getFormatMonth(d){
+ 		let  m= d.getMonth();
+ 		switch (m) {
+			    case 0:
+			        m=  "01";
+			        return m;
+			    case 1:
+			         m= "02";
+			         return m;
+			    case 2:
+			         m= "03";
+			         return m;
+			    case 3:
+			         m= "04";
+			         return m;
+			    case 4:
+			         m= "05";
+			         return m;
+			    case 5:
+			         m= "06";
+			         return m;
+			    case 6:
+			         m= "07";
+			         return m;
+			    case 7:
+			         m= "08";
+			         return m;
+			    case 8:
+			         m= "09";
+			         return m;
+			}
+ 		return m+1;
+ 	},
  	//获取格式化字符串的当日，JS的坑，不要用默认的.getDate()
  	getFormatDay(d){
  		let day = d.getDate();
  		switch (day) {
 			    case 1:
 			        day=  "01";
-			        break;
+			        return day;
 			    case 2:
 			         day= "02";
-			         break;
+			         return day;
 			    case 3:
 			         day= "03";
-			         break;
+			         return day;
 			    case 4:
 			         day= "04";
-			         break;
+			         return day;
 			    case 5:
 			         day= "05";
-			         break;
+			         return day;
 			    case 6:
 			         day= "06";
-			         break;
+			         return day;
 			    case 7:
 			         day= "07";
-			         break;
+			         return day;
 			    case 8:
 			         day= "08";
-			         break;
+			         return day;
 			    case 9:
 			         day= "09";
-			         break;
+			         return day;
 			}
  		return day;
  	},
@@ -308,12 +341,17 @@ export default {
     	//获取传进来的时间
     	let d = currdate;
     	//获取结束日期，并且保存到全局为当天日期（重要）
-    	var enddate = d.getFullYear()+"-" + (d.getMonth()+1) + "-" + this.getFormatDay(d);
+    	let a = d.getDate()
+    	let b =d.getMonth()
+    	let m = this.getFormatMonth(d);
+    	let dd = this.getFormatDay(d);
+    	
+    	var enddate = d.getFullYear()+"-" + this.getFormatMonth(d) + "-" + this.getFormatDay(d);
     	this.currentDate = enddate;
     	//获取6天之前的时间，注意边界值
     	d.setTime(d.getTime()-6*24*60*60*1000);
     	//获取6天之前的日期
-    	var startdate = d.getFullYear()+"-" + (d.getMonth()+1) + "-" + this.getFormatDay(d);
+    	var startdate = d.getFullYear()+"-" + this.getFormatMonth(d) + "-" + this.getFormatDay(d);
 			//拼装请求参数
 			let param = {
 				startdate:startdate,
@@ -404,7 +442,7 @@ export default {
     	let mockDate = new Date(this.currentDate);
     	let mockList = [];
     	for(let i=0;i<7;i++){
-    		let day1 = mockDate.getFullYear()+"-" + (mockDate.getMonth()+1) + "-" + this.getFormatDay(mockDate);
+    		let day1 = mockDate.getFullYear()+"-" + this.getFormatMonth(mockDate) + "-" + this.getFormatDay(mockDate);
     		let day2 = mockDate.getDay();
     		let mockRecord = {day:day2,tizhong:"-"};
     		for(let j=0;j<this.recordList.length;j++){

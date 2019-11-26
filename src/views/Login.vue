@@ -87,7 +87,7 @@ export default {
       	//请求成功
         //判断是否登陆失败
         if(res.data.status==0){
-        	this.msg = res.data.err;
+        	this.msg = res.data.err.msg;
         	return;
         }
         //登录成功，保存用户id

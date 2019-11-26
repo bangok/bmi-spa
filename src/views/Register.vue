@@ -132,7 +132,7 @@ export default {
       	//请求成功
         //判断是否用户重名
         if(res.data.status==0){
-        	this.msg = res.data.err;
+        	this.msg = res.data.err.msg;
         	return;
         }
         //注册成功，保存用户信息
